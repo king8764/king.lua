@@ -1,4 +1,4 @@
-# king.lua
+-- king.lua
 -- سكربت شاشة تحميل محسّن مع مؤثرات متقدمة، أمان وإدارة أفضل للموارد
 local function loadScreen()
     local success, err = pcall(function()
@@ -148,25 +148,9 @@ local function loadScreen()
         ConsoleOutput.ReadOnly = true
         ConsoleOutput.Parent = ScriptingSection
 
-        -- تشغيل السكربت من صندوق النص
+        -- تشغيل السكربت من صندوق النص (تم تعطيل loadstring)
         ExecuteButton.MouseButton1Click:Connect(function()
-            local code = TextBox.Text
-            local result, err = pcall(function()
-                local f = loadstring(code)
-                if f then
-                    local out = f()
-                    if out ~= nil then
-                        ConsoleOutput.Text = "Output: " .. tostring(out)
-                    else
-                        ConsoleOutput.Text = "Executed successfully."
-                    end
-                else
-                    ConsoleOutput.Text = "Compilation error."
-                end
-            end)
-            if not result then
-                ConsoleOutput.Text = "Error: " .. tostring(err)
-            end
+            ConsoleOutput.Text = "تنفيذ الأكواد غير مدعوم في هذه النسخة لأسباب الأمان."
         end)
     end)
     if not success then
